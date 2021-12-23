@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:vibration/vibration.dart';
 
 
 void main() => runApp(MyApp());
@@ -70,6 +71,7 @@ class _HomePageState extends State<HomePage>
 
   void _handleOnPressed() {
     setState(() {
+      Vibration.vibrate(duration: 200);
       isPlaying = !isPlaying;
       playLocal();
       isPlaying
