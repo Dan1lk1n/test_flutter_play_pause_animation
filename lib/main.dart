@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -25,6 +27,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
+  AudioPlayer audioPlayer = AudioPlayer();
   bool isPlaying = false;
 
   @override
@@ -68,9 +71,15 @@ class _HomePageState extends State<HomePage>
   void _handleOnPressed() {
     setState(() {
       isPlaying = !isPlaying;
+      playLocal();
       isPlaying
           ? _animationController.forward()
           : _animationController.reverse();
     });
   }
+
+  playLocal() async {
+    int result = await audioPlayer.play('assets/audio/click.wav', isLocal: true);
+  }
+
 }
